@@ -30,8 +30,15 @@ def _error(message: str, status: int, code: str = "bad_request"):
 
 
 def _valid_email(email: str) -> bool:
-    return isinstance(email, str) and "@" in email and "." in email.split("@")[-1]
-
+    if not isinstance(email, str) or email.count("@") != 1 or " " in email:
+        return False
+    local, domain = email.split("@")
+    return (
+        bool(local)
+        and "." in domain
+        and not domain.startswith(".")
+        and not domain.endswith(".")
+    )
 
 def _issue_token(user: User) -> str:
     now = datetime.now(timezone.utc)
