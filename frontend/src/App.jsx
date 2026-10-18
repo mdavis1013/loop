@@ -6,10 +6,12 @@ import MapInfo from './Pages/MapInfo.jsx'
 import OptionNotFound from './Pages/OptionNotFound.jsx'
 import PlaceDetails from './Pages/PlaceDetails.jsx'
 import Profile from './Pages/Profile.jsx'
+import Home from './Pages/Home.jsx';
 
 function App() {
   return (
   <Routes> 
+    <Route path="/" element={<Home />} />
     <Route path="/" element={<Explore />} /> 
     <Route path="/login" element={<Login />} />
     <Route path="/map" element={<MapInfo />} />
