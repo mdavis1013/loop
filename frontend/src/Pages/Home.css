@@ -45,3 +45,19 @@
     border-radius: var(--radius-pill);
     margin-top: var(--space-6);
 }
+
+.home-button {
+    margin-top: var(--space-8);
+    padding: var(--space-3) var(--space-8);
+    background: var(--color-accent);
+    color: #FFFFFF;
+    font-weight: 600;
+    text-decoration: none; /*removing the link underline*/
+    border-radius: var(--radius-pill);
+    box-shadow: var(--shadow-card);
+    transition: opacity 0.2s;
+}
+
+.home-button:hover {
+    opacity: 0.85;
+}

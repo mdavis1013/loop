@@ -1,4 +1,5 @@
 import './Home.css';
+import { Link } from 'react-router-dom';
 
 function Home() {
     return (
@@ -6,7 +7,8 @@ function Home() {
             <h1 className="home-title">Loop</h1>
             <p className="home-slogan">Your city, unlocked</p>
             <div className="home-divider"></div>
-        </main>
+            <Link to="/explore" className="home-button">Start exploring</Link>
+        </main> 
     )
 }
 export default Home;
