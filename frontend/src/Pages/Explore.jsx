@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './Explore.css';
+import CitySearch from '../Components/CitySearch';
 
 function Explore() {
     /*
@@ -20,7 +21,9 @@ function Explore() {
             <p className="explore-subtitle">Find what the locals love, wherever you're headed!</p>
 
             <form className="search-bar" onSubmit={handlingSearches}>
-                <input type="text" className="search-input" placeholder="Search a city... " value={city} onChange={(event) => setCity(event.target.value)}/>
+                <CitySearch
+                    value={city} onChange={setCity} onSelect={(c) => setCitySearched(`${c.city}, ${c.state}`)}
+                />
                 <button type="submit" className="search-button">Search</button>
             </form>
 
