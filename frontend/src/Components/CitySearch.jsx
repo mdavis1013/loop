@@ -38,12 +38,21 @@ export default function CitySearch({value, onChange, onSelect}) {
 
     return (
         <div className="city-search">
-            <input type="text" className="search-input" placeholder="Search a city..." value={value} onChange={(e) => {onChange(e.target.value); setOpen(true);}}/> 
+            <input 
+                type="text" 
+                className="search-input" 
+                placeholder="Search a city..." 
+                value={value} 
+                onChange={(e) => {onChange(e.target.value); setOpen(true);}}
+                onBlur={() => setOpen(false)}
+                onKeyDown={(e) => {if (e.key === "Enter") setOpen(false);}}  
+                aria-label="Search a city"  
+            /> 
             {/* show the suggestions as lists */
                 open && suggestions.length > 0 && ( 
                     <ul className="city-search-list">
                         {suggestions.map((c) => (
-                            <li key={`${c.city}-${c.state}`} onClick={() => choosingCity(c)}>
+                            <li key={`${c.city}-${c.state}`} onMouseDown={() => choosingCity(c)}>
                                 {c.city}, {c.state}
                             </li>
                         ))}
