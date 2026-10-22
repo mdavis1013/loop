@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
 function Login() {
@@ -8,6 +9,7 @@ function Login() {
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
     const [confirmP, setConfirmP] = useState('');
+    const navigate = useNavigate();
 
     function handlingLoginInfo(event) {
         event.preventDefault();
@@ -17,6 +19,7 @@ function Login() {
             return; 
         }
         console.log(mode, name, email, password);
+        navigate('/explore');
     }
 
     function switchingMode() {
@@ -42,6 +45,7 @@ function Login() {
                     type="email"
                     placeholder="Email"
                     aria-label="Email"
+                    required
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
                 />
