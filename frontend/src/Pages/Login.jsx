@@ -37,6 +37,7 @@ function Login() {
                         type="text"
                         placeholder="Name"
                         aria-label="Name"
+                        required
                         value={name}
                         onChange={(event) => setName(event.target.value)}
                     />
@@ -45,7 +46,7 @@ function Login() {
                     type="email"
                     placeholder="Email"
                     aria-label="Email"
-                    required
+                    required /* Forces the email being placed */
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
                 />
@@ -53,6 +54,7 @@ function Login() {
                     type="password"
                     placeholder="Password"
                     aria-label="Password"
+                    required
                     value={password}
                     onChange={(event) => setPassword(event.target.value)}
                 />
@@ -61,6 +63,7 @@ function Login() {
                         type="password"
                         placeholder="Confirm password"
                         aria-label="Confirm password"
+                        required
                         value={confirmP}
                         onChange={(event) => setConfirmP(event.target.value)}
                     />  
