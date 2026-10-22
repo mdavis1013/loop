@@ -1,0 +1,79 @@
+/* ====== PAGE INFO ======*/
+.login {
+    max-width: 420px;
+    margin: var(--space-8) auto;
+    padding: var(--space-8) var(--space-6);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 24px;
+    box-shadow:var(--shadow-card);
+    text-align: center;
+}
+
+.login-title {
+    font-size: 2.25rem;
+    color:var(--color-accent);
+    margin: 0 0 var(--space-6);
+}
+
+/* ====== FORM ======*/
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.login-form input {
+    font: inherit; 
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    background: transparent;
+    outline: none;
+}
+
+.login-form input:focus {
+    border-color: var(--color-accent);
+}
+
+.login-button {
+    margin-top: var(--space-2);
+    background: var(--color-accent);
+    color: #FFFFFF;
+    border: none;
+    border-radius: var(--radius-pill);
+    padding: var(--space-3) var(--space-6);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    opacity: 0.85;
+}
+
+/* ====== ERROR & SWITCH LINK ====== */
+.login-error {
+    color: #C0392B;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.login-switch {
+    margin: var(--space-6) 0 0;
+    color: var(--color-text-muted);
+}
+
+.login-switch-button {
+    background: none; 
+    border: none;
+    padding: 0 0 0 6px;
+    font: inherit;
+    font-weight: 600;
+    color: var(--color-accent);
+    cursor: pointer;
+}
+
+.login-switch-button:hover {
+    text-decoration: underline;
+}
