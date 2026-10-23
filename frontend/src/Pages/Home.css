@@ -6,6 +6,8 @@
     justify-content: center;
     gap: var(--space-8);
     flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
     text-align: center;
     padding: var(--space-4);
 }
@@ -14,6 +16,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+    z-index: 1;
 }
 
 .home-title {
@@ -62,18 +66,26 @@
     opacity: 0.85;
 }
 
-.home-photo {
-    /* Setting up the postcard photo to add more life to Loop */
-    width: 280px;
+.postcard {
+    position: absolute;
+    width: 200px;
     aspect-ratio: 3/4;
-    background: url("../Assets/postcard-image.jpg") center 40% / cover;
-    border: 10px solid #FFFFFF;
-    border-radius: 16px;
+    object-fit: cover;
+    border: 8px solid #FFFFFF;
+    border-radius: 12px;
     box-shadow: var(--shadow-card);
-    transform: rotate(-4deg);
+    transform: rotate(var(--tilt));
     transition: transform 0.3s;
 }
 
-.home-photo:hover {
-    transform: rotate(0deg) scale(1.03);
+.postcard:hover {
+    transform: rotate(0deg) scale(1.05);
+    z-index: 2;
 }
+
+@media (max-width: 768px) {
+    .postcard {
+        display: none;
+    }
+}
+
