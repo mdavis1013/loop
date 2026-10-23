@@ -1,19 +1,19 @@
 
 .home {
-    /*
-    min-height = making the wrapper AT LEAST as takk as the screen
-    display + flex-direction = stacking the children top to bottom
-    align-items = centers the information horizontally
-    justify-content = centers them vertically
-    padding = keeps text off the edges on phones
-    */
     min-height: 100vh; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-8);
+    flex-wrap: wrap;
+    text-align: center;
+    padding: var(--space-4);
+}
+
+.home-text {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: var(--space-4);
 }
 
 .home-title {
@@ -60,4 +60,20 @@
 
 .home-button:hover {
     opacity: 0.85;
+}
+
+.home-photo {
+    /* Setting up the postcard photo to add more life to Loop */
+    width: 280px;
+    aspect-ratio: 3/4;
+    background: url("../Assets/postcard-image.jpg") center 40% / cover;
+    border: 10px solid #FFFFFF;
+    border-radius: 16px;
+    box-shadow: var(--shadow-card);
+    transform: rotate(-4deg);
+    transition: transform 0.3s;
+}
+
+.home-photo:hover {
+    transform: rotate(0deg) scale(1.03);
 }
