@@ -18,7 +18,7 @@ from flask import Blueprint, current_app, jsonify, request
 from sqlalchemy.exc import IntegrityError
 
 from .extensions import db, bcrypt
-from .models import User
+from .models import User, VALID_ROLES, ROLE_MEMBER
 
 auth_bp = Blueprint("auth", __name__)
 
@@ -92,6 +92,20 @@ def token_required(f):
 
     return decorated
 
+def roles_required(*roles):
+        """Returns 403 unless the user's role is allowed."""
+        def decorator(f):
+            @wraps(f)
+            def decorated(*args, **kwargs):
+                user = getattr(request, "current_user", None)
+                if user is None:
+                    return _error("Authentication required.", 401, "unauthorized")
+                if user.role not in roles:
+                    return _error("You do not have permission to do this.", 403, "forbidden")
+                return f(*args, **kwargs)
+            return decorated
+        return decorator
+
 
 @auth_bp.post("/register")
 def register():
@@ -107,9 +121,15 @@ def register():
             400,
             "weak_password",
         )
+    role = data.get("role") or ROLE_MEMBER
+    if not isinstance(role, str) or role.strip().lower() not in VALID_ROLES:
+        return _error(
+            f"Role must be one of: {', '.join(VALID_ROLES)}.", 400, "invalid_role"
+        )
+    role = role.strip().lower()
 
     password_hash = bcrypt.generate_password_hash(password).decode("utf-8")
-    user = User(email=email, password_hash=password_hash)
+    user = User(email=email, password_hash=password_hash, role=role)
 
     db.session.add(user)
     try:

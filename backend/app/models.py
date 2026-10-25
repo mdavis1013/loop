@@ -20,13 +20,20 @@ def _uuid() -> str:
 def _now() -> datetime:
     return datetime.now(timezone.utc)
 
+ROLE_MEMBER = "member"
+ROLE_BUSINESS_OWNER = "business_owner"
+VALID_ROLES = (ROLE_MEMBER, ROLE_BUSINESS_OWNER)
 
 class User(db.Model):
     __tablename__ = "users"
+    __table_args__ = (
+        db.CheckConstraint("role IN ('member', 'business_owner')", name="ck_user_role"),
+    )
 
     id = db.Column(db.String(36), primary_key=True, default=_uuid)
     email = db.Column(db.String(255), unique=True, nullable=False, index=True)
     password_hash = db.Column(db.String(255), nullable=False)
+    role = db.Column(db.String(20), default=ROLE_MEMBER, nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), default=_now, nullable=False)
 
     saved_lists = db.relationship(
@@ -41,6 +48,7 @@ class User(db.Model):
         return {
             "id": self.id,
             "email": self.email,
+            "role": self.role,
             "created_at": self.created_at.isoformat(),
         }
 
