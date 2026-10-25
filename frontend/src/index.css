@@ -1,0 +1,56 @@
+/*
+ * - every element
+ ::before/::after for catching all of the elements
+*/
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+:root {
+  /* ====== Color Details ======*/
+  --color-bg: #FDFAF6;
+  --color-surface: #FFFFFF;
+  --color-text: #2b2420;
+  --color-text-muted: #8a7f76;
+  --color-accent: #9a6646;
+  --color-accent-soft: #FFD8A8;
+  --color-border: #EDE6DF;
+  --color-error: #C2513F;
+  /*============================*/
+
+  /*====== Font Details ======*/
+  --radius-sm: 10px;
+  --radius-card: 20px;
+  --radius-pill: 999px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --shadow-card: 0 4px 16px rgba(60, 40, 20, 0.08);
+  font-size: 16px;
+  line-height: 1.45;
+  letter-spacing: 0.18px;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /*============================*/
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+}
+
+
+
