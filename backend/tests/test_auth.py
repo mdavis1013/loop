@@ -22,9 +22,9 @@ import pytest
 from flask import request
 
 from app import create_app
-from app.auth import token_required
 from app.extensions import db
-from app.models import User
+from app.auth import token_required, roles_required
+from app.models import User, ROLE_BUSINESS_OWNER
 
 
 @pytest.fixture(scope="module")
@@ -41,8 +41,15 @@ def app():
     @token_required
     def whoami():
         return {"email": request.current_user.email}
+    
+    @app.get("/api/_owner_only")
+    @token_required
+    @roles_required(ROLE_BUSINESS_OWNER)
+    def owner_only():
+        return {"ok": True}
 
     return app
+
 
 
 @pytest.fixture()
@@ -202,3 +209,49 @@ def test_protected_route_for_deleted_user_returns_401(client):
     db.session.commit()
     res = client.get("/api/_whoami", headers={"Authorization": f"Bearer {token}"})
     assert res.status_code == 401
+
+# ------------------------------------------------------------------- roles
+
+def register_as(client, role, email=EMAIL):
+    return client.post(
+        "/api/auth/register", json={"email": email, "password": PASSWORD, "role": role}
+    )
+
+
+def test_register_defaults_to_member(client):
+    assert register(client).get_json()["user"]["role"] == "member"
+
+
+def test_register_as_business_owner(client):
+    res = register_as(client, "business_owner")
+    assert res.status_code == 201
+    assert res.get_json()["user"]["role"] == "business_owner"
+
+
+@pytest.mark.parametrize("bad_role", ["admin", "owner", 5])
+def test_register_invalid_role_returns_400(client, bad_role):
+    res = register_as(client, bad_role)
+    assert res.status_code == 400
+    assert res.get_json()["error"] == "invalid_role"
+
+
+def test_login_returns_role(client):
+    register_as(client, "business_owner")
+    assert login(client).get_json()["user"]["role"] == "business_owner"
+
+
+def test_role_route_without_token_returns_401(client):
+    assert client.get("/api/_owner_only").status_code == 401
+
+
+def test_role_route_rejects_member(client):
+    token = register(client).get_json()["token"]
+    res = client.get("/api/_owner_only", headers={"Authorization": f"Bearer {token}"})
+    assert res.status_code == 403
+    assert res.get_json()["error"] == "forbidden"
+
+
+def test_role_route_allows_business_owner(client):
+    token = register_as(client, "business_owner").get_json()["token"]
+    res = client.get("/api/_owner_only", headers={"Authorization": f"Bearer {token}"})
+    assert res.status_code == 200

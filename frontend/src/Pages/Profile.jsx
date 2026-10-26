@@ -33,6 +33,10 @@ function Profile() {
                     ? new Date(user.created_at).toLocaleDateString()
                     : 'Unavailable'}
             </p>
+            <p>
+                <strong>Account type:</strong>{' '}
+                {user.role === 'business_owner' ? 'Business Owner' : 'Member'}
+            </p>
 
             <button onClick={handleLogout}>Log out</button>
         </main>

@@ -14,6 +14,7 @@ function Login() {
     const [confirmP, setConfirmP] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+    const [role, setRole] = useState('member');
     const navigate = useNavigate();
     const { login } = useAuth();
 
@@ -22,7 +23,7 @@ function Login() {
         setError('');
         
         if (mode === 'signup' && password !== confirmP) {
-            console.log("Passwords don't match");
+            setError("Passwords don't match");
             return; 
         }
         setLoading(true);
@@ -41,6 +42,8 @@ function Login() {
                 body: JSON.stringify({
                     email: email.trim(),
                     password,
+                    name: mode === 'signup' ? name : undefined,
+                    role: mode === 'signup' ? role : undefined,
                 }),
             });
 
@@ -118,7 +121,17 @@ function Login() {
                         required
                         value={confirmP}
                         onChange={(event) => setConfirmP(event.target.value)}
-                    />  
+                    />
+                )}
+                {mode === 'signup' && (
+                    <select
+                        aria-label="Account type"
+                        value={role}
+                        onChange={(event) => setRole(event.target.value)}
+                    >
+                        <option value="member">Member</option>
+                        <option value="business_owner">Business Owner</option>
+                    </select>
                 )}
 
                 {error && <p role="alert">{error}</p>}
