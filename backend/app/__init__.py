@@ -1,10 +1,5 @@
 """
 Loop backend application factory.
-
-Owned by: Maria (Database + Auth)
-Do not add Google Places / Mapbox proxy routes here — those belong to
-Isabella's blueprint (app/places.py, registered separately). This factory
-only wires up the pieces this PBI owns: db, bcrypt, and the auth blueprint.
 """
 import os
 from flask import Flask, jsonify
@@ -31,9 +26,8 @@ def create_app(config_name: str | None = None) -> Flask:
     # --- Blueprints ---
     app.register_blueprint(auth_bp, url_prefix="/api/auth")
 
-    # Teammates register their own blueprints in main.py / run.py, e.g.:
-    #   from app.places import places_bp
-    #   app.register_blueprint(places_bp, url_prefix="/api/places")
+    from .places import places_bp
+    app.register_blueprint(places_bp, url_prefix="/api/places")
 
     @app.get("/api/health")
     def health():
