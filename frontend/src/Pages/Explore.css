@@ -1,0 +1,85 @@
+.explore {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: var(--space-8) var(--space-4);
+}
+
+.explore-title {
+    font-size: 2.5rem;
+    color: var(--color-accent);
+    margin: 0;
+}
+
+.explore-subtitle {
+    color: var(--color-text-muted);
+    margin: var(--space-2) 0 var(--space-6);
+}
+
+.search-bar {
+    display: flex;
+    gap: var(--space-2);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    padding: var(--space-2);
+    box-shadow: var(--shadow-card);
+}
+
+.search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font: inherit;
+    padding: 0 var(--space-4);
+}
+
+.search-button {
+    background: var(--color-accent);
+    color: #FFFFFF;
+    border: none;
+    border-radius: var(--radius-pill);
+    padding: var(--space-3) var(--space-6);
+    font: inherit; /* resetting the weight*/
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.search-button:hover {
+    opacity: 0.85;
+}
+
+.search-result {
+    margin-top: var(--space-6);
+}
+
+/* ====== AUTOCOMPLETE DROPDOWN ======*/ 
+.city-search {
+    position: relative;
+    flex: 1;
+    display: flex;
+}
+
+.city-search-list {
+    position: absolute;
+    top: calc(100% + 16px);
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: var(--space-2) 0;
+    list-style: none;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    box-shadow: var(--shadow-card);
+    z-index: 10;  
+}
+
+.city-search-list li {
+    padding: var(--space-2) var(--space-4);
+    cursor: pointer;
+}
+
+.city-search-list li:hover {
+    background: var(--color-border);
+}
