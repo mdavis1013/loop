@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../Context/AuthorizationContext.jsx';
 import './Login.css';
 
-const API_BASE_URL = 'http://localhost:5001';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:5000';
 
 function Login() {
     // state for the email and password
@@ -22,7 +22,7 @@ function Login() {
         setError('');
         
         if (mode === 'signup' && password !== confirmP) {
-            console.log("Passwords don't match");
+            setError("Passwords don't match");
             return; 
         }
         setLoading(true);
