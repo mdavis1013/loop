@@ -10,6 +10,7 @@ from .extensions import db, bcrypt
 from .auth import auth_bp
 
 
+
 def create_app(config_name: str | None = None) -> Flask:
     app = Flask(__name__)
     app.config.from_object(get_config(config_name))
@@ -28,6 +29,10 @@ def create_app(config_name: str | None = None) -> Flask:
 
     from .places import places_bp
     app.register_blueprint(places_bp, url_prefix="/api/places")
+
+    
+    from .reviews import reviews_bp
+    app.register_blueprint(reviews_bp, url_prefix="/api")
 
     @app.get("/api/health")
     def health():
