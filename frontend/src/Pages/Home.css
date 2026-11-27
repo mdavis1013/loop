@@ -2,14 +2,12 @@
 .home {
     min-height: 100vh; 
     display: flex;
+    flex-direction: column; /*Stack the text on top of the strip*/
     align-items: center;
-    justify-content: center;
-    gap: var(--space-8);
-    flex-wrap: wrap;
     position: relative;
     overflow: hidden;
     text-align: center;
-    padding: var(--space-4);
+    padding: var(--space-4) 0;
 }
 
 .home-text {
@@ -18,6 +16,8 @@
     align-items: center;
     position: relative;
     z-index: 1;
+    flex: 1; /* grow so that it fills all leftover height */
+    justify-content: center; /* center the text inside the space */
 }
 
 .home-title {
@@ -66,9 +66,21 @@
     opacity: 0.85;
 }
 
+.postcard-strip {
+    width: 100%;
+    overflow: hidden;
+    padding: var(--space-6) 0; /* Room for tilted corners and shadows*/
+}
+
+.postcard-track {
+    display: flex;
+    width: max-content; /* row is as long as the cards*/
+    animation: scroll 40s linear infinite;
+}
+
 .postcard {
-    position: absolute;
-    width: 200px;
+    margin-right: var(--space-8); /* 32px after each card */
+    width: 180px;
     aspect-ratio: 3/4;
     object-fit: cover;
     border: 8px solid #FFFFFF;
@@ -89,3 +101,7 @@
     }
 }
 
+@keyframes scroll {
+    from { transform: translateX(0);}
+    to { transform: translateX(-50%);}
+}
