@@ -2,14 +2,12 @@
 .home {
     min-height: 100vh; 
     display: flex;
+    flex-direction: column; /*Stack the text on top of the strip*/
     align-items: center;
-    justify-content: center;
-    gap: var(--space-8);
-    flex-wrap: wrap;
     position: relative;
     overflow: hidden;
     text-align: center;
-    padding: var(--space-4);
+    padding: var(--space-4) 0;
 }
 
 .home-text {
@@ -18,40 +16,58 @@
     align-items: center;
     position: relative;
     z-index: 1;
+    flex: 1; /* grow so that it fills all leftover height */
+    justify-content: center; /* center the text inside the space */
+}
+
+.home-eyebrow {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase; /* keep it capital */
+    color: var(--color-text-muted);
+    margin: 0 0 var(--space-3);
 }
 
 .home-title {
     /*
-    text-transform = displaying Loop as LOOP
     margin = removing the big default spacing browsers put around <h1>
     Font - Fraunces
     */
-    font-size: 4rem;
+    font-size: clamp(4rem, 9vw, 6.5rem);
     font-weight: 700;
+    font-style: italic;
     color: var(--color-accent);
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    line-height: 1;
     margin: 0;
 }
 
 .home-slogan {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--color-accent);
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--color-text);
     /* adding a small gap above the slogan*/
-    margin: var(--space-4) 0 0; 
+    margin: var(--space-3) 0 0; 
 }
 
-.home-divider {
-    width: 200px;
-    height: 2px;
-    background: var(--color-accent-soft);
-    border-radius: var(--radius-pill);
-    margin-top: var(--space-6);
+/* ROTATING THE CITIES */
+.home-city {
+    display: inline-block;
+    color: var(--color-accent);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 700;
+    animation: cityIn 0.4s ease-out;
 }
 
+@keyframes cityIn {
+    from { opacity: 0; transform: translateY(8px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+
+/* BUTTON */
 .home-button {
-    margin-top: var(--space-8);
+    margin-top: var(--space-6);
     padding: var(--space-3) var(--space-8);
     background: var(--color-accent);
     color: #FFFFFF;
@@ -66,9 +82,22 @@
     opacity: 0.85;
 }
 
+/* POSTCARD STRIP */
+.postcard-strip {
+    width: 100%;
+    overflow: hidden;
+    padding: var(--space-6) 0; /* Room for tilted corners and shadows*/
+}
+
+.postcard-track {
+    display: flex;
+    width: max-content; /* row is as long as the cards*/
+    animation: scroll 40s linear infinite;
+}
+
 .postcard {
-    position: absolute;
-    width: 200px;
+    margin-right: var(--space-8); /* 32px after each card */
+    width: 180px;
     aspect-ratio: 3/4;
     object-fit: cover;
     border: 8px solid #FFFFFF;
@@ -83,9 +112,26 @@
     z-index: 2;
 }
 
-@media (max-width: 768px) {
-    .postcard {
-        display: none;
+
+@keyframes scroll {
+    from { transform: translateX(0);}
+    to { transform: translateX(-50%);}
+}
+
+/* POLISH */
+.postcard-strip:hover .postcard-track {
+    animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .postcard-track, .home-city {
+        animation: none;
     }
 }
 
+@media (max-width: 768px) {
+    .postcard {
+        width: 120px;
+        margin-right: var(--space-4);
+    }
+}
