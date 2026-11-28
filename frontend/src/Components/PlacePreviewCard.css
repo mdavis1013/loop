@@ -1,0 +1,59 @@
+.place-preview-card {
+    min-width: 210px;
+    max-width: 280px;
+    padding: 4px;
+    font-family: inherit;
+}
+
+.preview-category {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.preview-name {
+    font-size: 19px;
+    color: #26382e;
+    margin: 12px 0 8px;
+    line-height: 1.3;
+}
+
+.preview-rating {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: #777;
+}
+
+.preview-star {
+    color: #E5A323;
+    font-size: 17px;
+}
+
+.place-preview-card .preview-address {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.5;
+    margin: 10px 0;
+}
+
+.view-place-button {
+    width: 100%;
+    padding: 10px 14px;
+    margin-top: 8px;
+    border: none;
+    border-radius: 8px;
+    background-color: #35654b;
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.view-place-button:hover {
+    background-color: #254b36;
+}
