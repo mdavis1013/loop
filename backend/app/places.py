@@ -14,20 +14,55 @@ places_bp = Blueprint("places", __name__)
 # return mock data and never call Google.
 demo_status = True
 
+
 MOCK_PLACES = [
     {
         "id": "mock-1",
         "name": "Sample Coffee Shop",
         "address": "123 Main St, Gainesville, FL",
         "location": {"lat": 29.6516, "lng": -82.3248},
+        "primaryType": "coffee_shop",
+        "category": "Coffee Shop",
+        "types": ["coffee_shop", "cafe"]
     },
     {
         "id": "mock-2",
         "name": "Sample Park",
         "address": "456 Park Ave, Gainesville, FL",
         "location": {"lat": 29.6436, "lng": -82.3549},
+        "primaryType": "park",
+        "category": "Park",
+        "types": ["park"]
     },
+    {
+        "id": "mock-3",
+        "name": "Sample Restaurant",
+        "address": "789 University Ave, Gainesville, FL",
+        "location": {"lat": 29.6520, "lng": -82.3400},
+        "primaryType": "italian_restaurant",
+        "category": "Italian Restaurant",
+        "types": ["italian_restaurant", "restaurant"]
+    },
+    {
+        "id": "mock-4",
+        "name": "Sample Nightclub",
+        "address": "101 Downtown St, Gainesville, FL",
+        "location": {"lat": 29.6550, "lng": -82.3200},
+        "primaryType": "night_club",
+        "category": "Nightclub",
+        "types": ["night_club", "bar"]
+    },
+    {
+        "id": "mock-5",
+        "name": "Sample Museum",
+        "address": "202 Museum Rd, Gainesville, FL",
+        "location": {"lat": 29.6380, "lng": -82.3670},
+        "primaryType": "museum",
+        "category": "Museum",
+        "types": ["museum", "tourist_attraction"]
+    }
 ]
+
 
 
 @places_bp.get("/search")

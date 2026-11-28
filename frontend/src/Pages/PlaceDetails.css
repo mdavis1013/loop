@@ -1,0 +1,137 @@
+
+.place-details {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 30px 24px 60px;
+}
+
+.back-to-explore {
+    display: inline-block;
+    color: #35654b;
+    font-weight: 600;
+    text-decoration: none;
+    margin-bottom: 24px;
+}
+
+.back-to-explore:hover {
+    text-decoration: underline;
+}
+
+.place-hero {
+    height: 240px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 28px;
+}
+
+.place-hero-icon {
+    font-size: 80px;
+}
+
+.place-information {
+    padding-bottom: 28px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.details-category {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.place-information h1 {
+    font-size: 36px;
+    color: #26382e;
+    margin: 14px 0 10px;
+}
+
+.details-address {
+    font-size: 15px;
+    color: #666;
+}
+
+.details-rating {
+    font-size: 14px;
+    color: #777;
+    margin: 12px 0;
+}
+
+.add-collection-button,
+.write-review-button {
+    background-color: #35654b;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.add-collection-button:disabled,
+.write-review-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.place-about {
+    padding: 26px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.place-about h2,
+.place-reviews h2 {
+    font-size: 23px;
+    color: #26382e;
+    margin-bottom: 14px;
+}
+
+.place-about p {
+    color: #666;
+    line-height: 1.7;
+}
+
+.place-reviews {
+    padding-top: 26px;
+}
+
+.reviews-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.empty-reviews {
+    text-align: center;
+    padding: 40px 20px;
+    border: 1px dashed #d5ddd5;
+    border-radius: 16px;
+    margin-top: 20px;
+    color: #777;
+}
+
+.empty-reviews span {
+    font-size: 42px;
+    color: #35654b;
+}
+
+.empty-reviews h3 {
+    color: #26382e;
+    margin: 10px 0;
+}
+
+@media (max-width: 600px) {
+    .place-information h1 {
+        font-size: 28px;
+    }
+
+    .place-hero {
+        height: 180px;
+    }
+}
